@@ -1,0 +1,32 @@
+# C++ build and IDE files
+cmake-build-*/
+target/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+env.*
+*.o
+*.obj
+*.so
+*.a
+*.lib
+*.dll
+*.exe
+*.out
+*.log
+Testing/
+*.user
+*.swp
+*.swo
+*.db
+*.pyc
+*.pyo
+*.pyd
+*.DS_Store
+*.directory
+*.vscode/
+.idea/
+*.iml
+# End of C++/CMake ignores
+
