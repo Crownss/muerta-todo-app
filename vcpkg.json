@@ -1,0 +1,11 @@
+{
+  "name": "meurta",
+  "version": "1.0.0",
+  "dependencies": [
+    "date",
+    "libuuid",
+    "spdlog",
+    "sqlite3",
+    "imgui"
+  ]
+}

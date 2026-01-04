@@ -1,3 +1,4 @@
+set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" CACHE STRING "")
 cmake_minimum_required(VERSION 4.1)
 project(muerta)
 
@@ -32,4 +33,11 @@ elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     add_compile_options(/W4 /WX)
 endif()
 
-add_executable(muerta main.cpp)
+add_executable(muerta src/main.cpp)
+
+find_package(unofficial-sqlite3 CONFIG REQUIRED)
+find_package(date CONFIG REQUIRED)
+find_package(spdlog CONFIG REQUIRED)
+find_package(unofficial-libuuid CONFIG REQUIRED)
+find_package(imgui CONFIG REQUIRED)
+target_link_libraries(muerta PRIVATE unofficial::sqlite3::sqlite3 spdlog::spdlog_header_only unofficial::UUID::uuid imgui::imgui date::date-tz)
