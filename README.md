@@ -28,17 +28,17 @@ vcpkg install
 
 ## 2. Configure and build the project
 
-Use CMake to configure and build:
+Use CMake to configure and build (for example debug profile):
 
 ```sh
 cmake -B cmake-build-debug -DCMAKE_TOOLCHAIN_FILE="/path/to/vcpkg/scripts/buildsystems/vcpkg.cmake"
-cmake --build cmake-build-debug
+cmake --build cmake-build-debug --target muerta
 ```
 or set env VCPKG_ROOT 
 
 ```sh
 export VCPKG_ROOT="/path/to/vcpkg/scripts/buildsystems/vcpkg.cmake"
-cmake --build cmake-build-debug
+cmake --build cmake-build-debug --target meurta
 ```
 
 Replace `/path/to/vcpkg` with your actual vcpkg path.
