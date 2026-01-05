@@ -12,7 +12,12 @@ SQLiteDB::~SQLiteDB() {
 
 bool SQLiteDB::open() {
     if (sqlite3_open("./muerta.db", &db_) == SQLITE_OK) {
-        return test_ping();
+        const bool test_ping = this->test_ping();
+        if (!test_ping)
+        {
+            close();
+        }
+        return test_ping;
     }
     spdlog::error("Failed to open SQLite DB: {}", sqlite3_errmsg(db_));
     close();
