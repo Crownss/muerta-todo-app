@@ -33,7 +33,11 @@ elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     add_compile_options(/W4 /WX)
 endif()
 
-add_executable(muerta src/main.cpp)
+add_executable(muerta src/core/apps/cli/main.cpp
+        src/core/infra/sqlite.h
+        src/core/infra/sqlite.cpp
+        src/core/container/container.cpp
+        src/core/container/container.h)
 
 find_package(unofficial-sqlite3 CONFIG REQUIRED)
 find_package(date CONFIG REQUIRED)
