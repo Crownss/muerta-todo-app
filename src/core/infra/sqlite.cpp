@@ -33,6 +33,9 @@ void SQLiteDB::close() {
 }
 
 sqlite3* SQLiteDB::getHandle() const {
+    if (!db_) {
+        throw std::logic_error("Database not open");
+    }
     return db_;
 }
 

@@ -2,8 +2,7 @@
 // Created by pudding on 1/6/26.
 //
 
-#ifndef MUERTA_SQLITE_H
-#define MUERTA_SQLITE_H
+#pragma once
 
 #include <memory>
 #include <sqlite3.h>
@@ -20,5 +19,3 @@ private:
     bool test_ping() const;
     sqlite3* db_ = nullptr;
 };
-
-#endif //MUERTA_SQLITE_H

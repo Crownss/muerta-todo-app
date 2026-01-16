@@ -37,7 +37,10 @@ add_executable(muerta src/core/apps/cli/main.cpp
         src/core/infra/sqlite.h
         src/core/infra/sqlite.cpp
         src/core/container/container.cpp
-        src/core/container/container.h)
+        src/core/container/container.h
+        src/core/repository/todo/todo.cpp
+        src/core/repository/todo/todo.h
+        src/core/repository/todo/models.h)
 
 find_package(unofficial-sqlite3 CONFIG REQUIRED)
 find_package(date CONFIG REQUIRED)

@@ -2,10 +2,12 @@
 // Created by pudding on 1/6/26.
 //
 
-#ifndef MUERTA_CONTAINER_H
-#define MUERTA_CONTAINER_H
+#pragma once
+
 #include "../infra/sqlite.h"
 #include <spdlog/spdlog.h>
+
+#include "../repository/todo/todo.h"
 
 class Container
 {
@@ -13,6 +15,6 @@ public:
     Container();
     ~Container();
 private:
-    SQLiteDB* sqlite_con = nullptr;
+    std::unique_ptr<SQLiteDB> sqlite_con;
+    std::unique_ptr<TodosRepository> todos_domain;
 };
-#endif //MUERTA_CONTAINER_H
