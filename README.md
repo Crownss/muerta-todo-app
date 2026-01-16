@@ -1,4 +1,4 @@
-# Muerta Project
+# Muerta Todo List App
 
 This README will guide you through setting up and running the project using vcpkg and CMake.
 
