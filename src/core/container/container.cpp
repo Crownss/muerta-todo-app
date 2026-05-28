@@ -2,27 +2,31 @@
 // Created by pudding on 1/6/26.
 //
 
-#include "container.h"
-
+#include "container.hpp"
 
 // Constructor to initialize every heap allocated resources
 Container::Container()
 {
-    if (auto init_sqlite = std::make_unique<SQLiteDB>(); init_sqlite->open())
+    if (std::unique_ptr<SQLiteDB> init_sqlite = std::make_unique<SQLiteDB>(); init_sqlite->open())
     {
-        sqlite_con = std::move(init_sqlite);
+        this->sqlite_con = std::move(init_sqlite);
     }
     else
     {
-        spdlog::error("Failed to initialize SQLiteDB in Container");
-        throw std::runtime_error("Failed to initialize SQLiteDB in Container");
+        std::string error_msg = "Failed to open SQLiteDB in Container: " + std::string(this->sqlite_con->getHandle() ? sqlite3_errmsg(this->sqlite_con->getHandle()) : "Unknown error");
+        spdlog::error(error_msg);
+        throw std::runtime_error(error_msg);
     }
-    std::unique_ptr<TodosRepository> init_todos_domain = std::make_unique<TodosRepository>(*sqlite_con);
+    std::unique_ptr<TodosRepository> init_todos_domain = std::make_unique<TodosRepository>(*this->sqlite_con);
+    this->todos_domain = std::move(init_todos_domain);
     spdlog::info("initialized todos_domain");
+    std::unique_ptr<TodoService> init_todos_service = std::make_unique<TodoService>(*this->todos_domain);
+    this->todos_service = std::move(init_todos_service);
+    spdlog::info("initialized todos_service");
 }
 
 // Destructor to close every heap allocated resources
 Container::~Container()
 {
-    sqlite_con->close();
+    this->sqlite_con->close();
 }

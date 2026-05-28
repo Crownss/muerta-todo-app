@@ -33,18 +33,21 @@ elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     add_compile_options(/W4 /WX)
 endif()
 
-add_executable(muerta src/apps/cli/main.cpp
-        src/core/infra/sqlite.h
+add_executable(muerta_cli src/apps/cli/main.cpp
+        src/core/infra/sqlite.hpp
         src/core/infra/sqlite.cpp
         src/core/container/container.cpp
-        src/core/container/container.h
+        src/core/container/container.hpp
         src/core/repository/todo/todo.cpp
-        src/core/repository/todo/todo.h
-        src/core/repository/todo/models.h)
+        src/core/repository/todo/todo.hpp
+        src/core/repository/todo/models.hpp
+        src/core/helper/tz.cpp
+        src/core/helper/tz.hpp
+        src/core/services/todo/todo_service.cpp
+        src/core/services/todo/todo_service.hpp)
 
 find_package(unofficial-sqlite3 CONFIG REQUIRED)
-find_package(date CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 find_package(unofficial-libuuid CONFIG REQUIRED)
 find_package(imgui CONFIG REQUIRED)
-target_link_libraries(muerta PRIVATE unofficial::sqlite3::sqlite3 spdlog::spdlog_header_only unofficial::UUID::uuid imgui::imgui date::date-tz)
+target_link_libraries(muerta_cli PRIVATE unofficial::sqlite3::sqlite3 spdlog::spdlog_header_only unofficial::UUID::uuid imgui::imgui)

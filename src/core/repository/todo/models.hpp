@@ -4,18 +4,16 @@
 // todo_item.h
 #pragma once
 #include <string>
-#include <optional>
 #include <uuid/uuid.h>
+#include <chrono>
 
-struct TodoItem {
+struct TodoItem
+{
     uuid_t id;
     std::string title;
     std::string description;
-    std::string status; // "pending", "in_progress", "completed"
+    std::string status = "pending"; // "pending", "in_progress", "completed"
+    std::chrono::system_clock::time_point created_at = std::chrono::system_clock::now();
 
     bool isValid() const { return !title.empty() && !uuid_is_null(id); }
-    // Ensure status is set to "pending" if empty
-    void ensureStatus() {
-        if (status.empty()) status = "pending";
-    }
 };
